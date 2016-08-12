@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Scott Stephens</title>
+ <link href="www.scott.stephens.name/atom.xml" rel="self"/>
+ <link href="www.scott.stephens.name/"/>
+ <updated>2016-08-12T16:58:44-05:00</updated>
+ <id>www.scott.stephens.name</id>
+ <author>
+   <name>Scott Stephens</name>
+   <email>stephens.js@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>About The Work Timer</title>
+   <link href="www.scott.stephens.name/2016/08/12/about-the-work-timer/"/>
+   <updated>2016-08-12T00:00:00-05:00</updated>
+   <id>www.scott.stephens.name/2016/08/12/about-the-work-timer</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello World!</title>
+   <link href="www.scott.stephens.name/2016/08/11/hello-world/"/>
+   <updated>2016-08-11T00:00:00-05:00</updated>
+   <id>www.scott.stephens.name/2016/08/11/hello-world</id>
+   <content type="html">&lt;p&gt;I created this site primarily as a learning exercise. I program a lot, but, unlike a lot of other programmers, what I program typically has nothing whatsoever to do with the world wide web. Or even a corporate intra-web. Given the ubiquity of web apps I thought it might be a good idea to be at least minimally familiar with web programming. Enough that when developers talk about web stuff my blank uncomprehending stare doesn’t make them wonder if I really know how to program at all. Backend web stuff is actually pretty similar to the stuff I do every day, so for me this was mostly about the front-end, client-side web. Since for me learning by doing is the only way to go, I needed to make a website.&lt;/p&gt;
+
+&lt;p&gt;I started with using Jekyll to generate a static site, since that seemed like the easiest possible way to get a useful site. After realizing just how easy that was, I realized I needed a more substantial project if I actually wanted to learn anything. I’ve been using Pomodoro timers as a productivity tool recently, and decided that writing my own would make a good project.&lt;/p&gt;
+
+&lt;p&gt;After building the site it seemed silly not to actually publish it, so here it is. I guess I have a blog now. I don’t know that I will end up posting with any regularity, but who knows.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
