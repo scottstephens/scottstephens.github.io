@@ -4,7 +4,7 @@
  <title>Scott Stephens</title>
  <link href="www.scott.stephens.name/atom.xml" rel="self"/>
  <link href="www.scott.stephens.name/"/>
- <updated>2016-08-12T16:58:44-05:00</updated>
+ <updated>2016-08-13T12:38:30-05:00</updated>
  <id>www.scott.stephens.name</id>
  <author>
    <name>Scott Stephens</name>
@@ -13,11 +13,17 @@
 
  
  <entry>
-   <title>About The Work Timer</title>
+   <title>About the Work Timer</title>
    <link href="www.scott.stephens.name/2016/08/12/about-the-work-timer/"/>
    <updated>2016-08-12T00:00:00-05:00</updated>
    <id>www.scott.stephens.name/2016/08/12/about-the-work-timer</id>
-   <content type="html">
+   <content type="html">&lt;p&gt;I made the work timer primarily as an exercise to learn some javascript and CSS, but I thought it might be worth describing how I use it, in case anyone stumbles upon it and is curious.&lt;/p&gt;
+
+&lt;p&gt;I often work with a variation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Pomodoro_Technique&quot;&gt;Pomodoro Timer&lt;/a&gt; productivity system. For the first 25 minutes after starting work, I keep working regardless of how frustrated I feel. After the first 25 minutes, I take a 5-10 minute break whenever I feel even a little frustrated. It helps me perserve long enough when starting work to get into &lt;a href=&quot;https://en.wikipedia.org/wiki/Flow_(psychology)&quot;&gt;flow&lt;/a&gt;, but break often enough that I don’t get excessively fatigued.&lt;/p&gt;
+
+&lt;p&gt;The existing pomodoro timers I found online didn’t work great with my modifications. At the end of a work period they would tend to either alert until the user interacted with the timer, or they would alert and then automatically go into the following break period. Either made it necessary for me to interact with the software at the end of the initial work period, which would sometimes knock me out of flow. So at the end of a work or break period, my timer makes a minimally obtrusive alert, then keeps counting the time. When I’ve decided I want to stop, I can tell the timer I’ve switched to a different period. It also tracks my history, so I can see how much actual working I’m doing every day, essentially gamifying my productivity efforts.&lt;/p&gt;
+
+&lt;p&gt;From a pure productivity standpoint writing a customized timer would have been a huge loser (given how much time I spent learning javascript and CSS). But it was a great project for learning. And I got a tool I can actually use as a bonus.&lt;/p&gt;
 </content>
  </entry>
  

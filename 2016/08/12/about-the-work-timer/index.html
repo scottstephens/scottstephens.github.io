@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
 
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      About the Work Timer &middot; Scott Stephens
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/scott.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about">About Me</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/all-posts">All Posts</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/credits">Credits</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/work-timer">Work Timer</a>
+        
+      
+    
+  </nav>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Scott Stephens</a>
+            <small>The complete anthology</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">About the Work Timer</h1>
+  <span class="post-date">12 Aug 2016</span>
+  <p>I made the work timer primarily as an exercise to learn some javascript and CSS, but I thought it might be worth describing how I use it, in case anyone stumbles upon it and is curious.</p>
+
+<p>I often work with a variation of the <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro Timer</a> productivity system. For the first 25 minutes after starting work, I keep working regardless of how frustrated I feel. After the first 25 minutes, I take a 5-10 minute break whenever I feel even a little frustrated. It helps me perserve long enough when starting work to get into <a href="https://en.wikipedia.org/wiki/Flow_(psychology)">flow</a>, but break often enough that I don’t get excessively fatigued.</p>
+
+<p>The existing pomodoro timers I found online didn’t work great with my modifications. At the end of a work period they would tend to either alert until the user interacted with the timer, or they would alert and then automatically go into the following break period. Either made it necessary for me to interact with the software at the end of the initial work period, which would sometimes knock me out of flow. So at the end of a work or break period, my timer makes a minimally obtrusive alert, then keeps counting the time. When I’ve decided I want to stop, I can tell the timer I’ve switched to a different period. It also tracks my history, so I can see how much actual working I’m doing every day, essentially gamifying my productivity efforts.</p>
+
+<p>From a pure productivity standpoint writing a customized timer would have been a huge loser (given how much time I spent learning javascript and CSS). But it was a great project for learning. And I got a tool I can actually use as a bonus.</p>
+
+</div>
+
+<div class="post-navigation">
+  
+    <a class="prev" href="/2016/08/11/hello-world/">&laquo; Hello World! (11 Aug 2016)</a>
+  
+  
+</div>
+
+
+
+<div class="footer">
+	&copy; 2016 Scott Stephens. All rights reserved.
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
