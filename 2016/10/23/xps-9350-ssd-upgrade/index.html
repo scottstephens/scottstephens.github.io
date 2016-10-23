@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Dell XPS 13 9350 SSD Upgrade &middot; Scott Stephens
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/scott.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="sidebar-overlay">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about">About Me</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/all-posts">All Posts</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/credits">Credits</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/work-timer">Work Timer</a>
+        
+      
+    
+  </nav>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Scott Stephens</a>
+            <small>The complete anthology</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Dell XPS 13 9350 SSD Upgrade</h1>
+  <span class="post-date">23 Oct 2016</span>
+  <p>Intel recently released the <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-600p-series.html">600p</a> line of SSDs. They use the new NVME interface, and offer an intermediate level of performance between SATA drives and the other NVME drives on the market (the Samsung 950 Pro, the Toshiba RD400). But whereas the 950 pro will set you back about $315 for a 512 GB model, at the time of writing you can get a 512 GB 600p from <a href="http://www.microcenter.com/product/468436/600p_512GB_M2_Internal_SSD">Microcenter</a> for only $170. It seemed like a good deal to me, and induced me to upgrade the SSD in my Dell XPS 13 9350 from the stock 128 GB Samsung CM-871 to a 512 GB Intel 600p.</p>
+
+<p>The main reason for this post, however, is not the economics of the upgrade, but the technical aspects. It’s a slightly unusual upgrade because the existing SSD was SATA, not NVME. Swapping a SATA drive for an NVME drive would most often result in nothing but tears, but there was reason to believe it would work in this case. It turns out that 9350’s sold with 256 or 512 GB storage came with NVME drives; it was only the 128 GB version that came with a SATA. This suggests that the 9350 motherboard would support both SATA and NVME drives. Indeed, there are a few reports on the web of users upgrading their 128 GB 9350 to a Samsung 950 pro (for instance <a href="https://www.reddit.com/r/Dell/comments/4tyqof/does_the_xps_13_9350_with_128_gb_ssd_support_pcie/">this reddit thread</a>). However, all the reports I’ve found suggest that the users who upgraded installed a fresh copy of Windows 10; in other words, they did not attempt to clone their drive in order to keep installed programs, settings, and data. I’ve managed this latter feat, and I thought it might be worth documenting my experience in case it helps others.</p>
+
+<p>Before you get started, make sure you have the following on hand:</p>
+
+<ul>
+  <li>2 usb drives of at least 8 GB</li>
+  <li>A USB hard drive with at least 128 GB free</li>
+  <li>A torx T5 screwdriver</li>
+  <li>A philips head 1.2 mm screwdriver. A phillips #000 is probably roughly the same size.</li>
+</ul>
+
+<p>The upgrade procedure:</p>
+
+<ol>
+  <li>Create a Ubuntu Live USB (<a href="https://www.ubuntu.com/download/desktop">download</a>, <a href="https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows">instructions</a>)
+    <ul>
+      <li>When working with Rufus, select the ISO image first, even though it’s at the bottom of the form. It resets the other settings.</li>
+      <li>Choose a GPT partition table for UEFI only.</li>
+      <li>Use FAT32 as the file system.</li>
+    </ul>
+  </li>
+  <li>Download <a href="http://www.macrium.com/reflectfree.aspx">Macrium Reflect</a> and use it to create a backup image of your existing SSD AND to create rescue media.
+    <ul>
+      <li>Good tutorial of using Reflect to backup and restore, as well as the physical drive replacement: <a href="http://www.laptopmag.com/articles/upgrade-dell-xps-13-ssd">http://www.laptopmag.com/articles/upgrade-dell-xps-13-ssd</a></li>
+    </ul>
+  </li>
+  <li>Test the Reflect rescue disk, and the Ubuntu live disk.
+    <ul>
+      <li>Press F12 to trigger the boot menu on the XPS 9350.</li>
+      <li>You may need to add options to the boot menu. It’s in the General-&gt;Boot Sequence menu inside the UEFI/BIOS settings.</li>
+    </ul>
+  </li>
+  <li>Do the physical drive replacement.
+    <ul>
+      <li>See <a href="http://www.laptopmag.com/articles/upgrade-dell-xps-13-ssd">laptop magazine article</a> referenced earlier.</li>
+      <li>Note that they erroneosly call for a pentalobe screwdriver; you actually need a torx.</li>
+    </ul>
+  </li>
+  <li>Boot into the Reflect rescue environment, restore your image to the new disk.
+    <ul>
+      <li>Again, see the <a href="http://www.laptopmag.com/articles/upgrade-dell-xps-13-ssd">laptop magazine article</a>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Boot using your new disk, make sure it works.</p>
+  </li>
+  <li>Restart the computer and boot into the Ubuntu Live environment. Use gparted to adjust the size of your partitions.
+    <ul>
+      <li>In order for Ubuntu to be able to find the NVME hard drive, you need to change a UEFI/BIOS setting. You’ll be changing the storage controller from RAID mode to AHCI mode. It’s in the System Configuration-&gt;SATA Operation menu.</li>
+      <li>Assuming you haven’t changed the factory partitions, you’ll have 4 on the old hard drive: a 500 MB boot partition, a 128 MB reserved partition, a ~127.8 GB data and os partition, and a 850 MB recovery parition.</li>
+      <li>After the clone, you’ll have the same partitions, plus some unallocated space at the end of the disk.</li>
+      <li>I deleted the recovery partition, then expanded the main partition to fill all of the empty space.</li>
+    </ul>
+  </li>
+  <li>Restart the computer and boot into the restored Windows 10 environment
+    <ul>
+      <li>You’ll need to change the storage firmware setting back to RAID mode in order to boot into Windows.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Some additional commentary:</p>
+
+<ul>
+  <li>
+    <p>If you only have one USB thumb drive, you can move creation of the Ubuntu drive to between steps 6 and 7, reusing the drive you used for the Reflect restore environment. The reason I suggest making it at the beginning on a different drive is that if you run into trouble, you can boot into Ubuntu to use the web, create new USB drives, examine the partitions, etc. If you only have the one, and your first attempt fails, you’ll have to swap out the drive physically in between attempts, which is a pain.</p>
+  </li>
+  <li>
+    <p>For my first attempt at doing the clone, I used gparted and dd within Ubuntu to clone the existing partitions to the backup drive, and then to restore them to the new drive. Windows would not boot after doing this. A Windows rescue disk that I had made prior to starting the backup and restore process was unable to repair the boot problem. I also tried with Acronis True Image 2015, which also failed. So I strongly suggest using Reflect, and not something similar. The switch from SATA to NVME seems to confound a lot of the typical methods of clone and restore.</p>
+  </li>
+  <li>
+    <p>Some internet commentary talks about solutions to booting problems involving turning off Secure Boot, and/or enabling legacy mode booting. I didn’t experiment with changing those settings. It’s possible that changing those settings would have fixed my problems using the Windows rescue disk to repair my dd-cloned boot partition. I doubt it though; I didn’t have any problems booting my repair disk, it just wasn’t able to repair my boot partition.</p>
+  </li>
+</ul>
+
+
+</div>
+
+<div class="post-navigation">
+  
+    <a class="prev" href="/2016/08/12/about-the-work-timer/">&laquo; About the Work Timer (12 Aug 2016)</a>
+  
+  
+</div>
+
+
+
+<div class="footer">
+	&copy; 2016 Scott Stephens. All rights reserved.
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
