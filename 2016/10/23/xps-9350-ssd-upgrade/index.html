@@ -11,7 +11,7 @@
 
   <title>
     
-      Dell XPS 13 9350 SSD Upgrade &middot; Scott Stephens
+      Dell XPS 13 9350 SSD Upgrade: SATA to NVMe &middot; Scott Stephens
     
   </title>
 
@@ -109,11 +109,9 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Dell XPS 13 9350 SSD Upgrade</h1>
+  <h1 class="post-title">Dell XPS 13 9350 SSD Upgrade: SATA to NVMe</h1>
   <span class="post-date">23 Oct 2016</span>
-  <p>Intel recently released the <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-600p-series.html">600p</a> line of SSDs. They use the new NVME interface, and offer an intermediate level of performance between SATA drives and the other NVME drives on the market (the Samsung 950 Pro, the Toshiba RD400). But whereas the 950 pro will set you back about $315 for a 512 GB model, at the time of writing you can get a 512 GB 600p from <a href="http://www.microcenter.com/product/468436/600p_512GB_M2_Internal_SSD">Microcenter</a> for only $170. It seemed like a good deal to me, and induced me to upgrade the SSD in my Dell XPS 13 9350 from the stock 128 GB Samsung CM-871 to a 512 GB Intel 600p.</p>
-
-<p>The main reason for this post, however, is not the economics of the upgrade, but the technical aspects. It’s a slightly unusual upgrade because the existing SSD was SATA, not NVME. Swapping a SATA drive for an NVME drive would most often result in nothing but tears, but there was reason to believe it would work in this case. It turns out that 9350’s sold with 256 or 512 GB storage came with NVME drives; it was only the 128 GB version that came with a SATA. This suggests that the 9350 motherboard would support both SATA and NVME drives. Indeed, there are a few reports on the web of users upgrading their 128 GB 9350 to a Samsung 950 pro (for instance <a href="https://www.reddit.com/r/Dell/comments/4tyqof/does_the_xps_13_9350_with_128_gb_ssd_support_pcie/">this reddit thread</a>). However, all the reports I’ve found suggest that the users who upgraded installed a fresh copy of Windows 10; in other words, they did not attempt to clone their drive in order to keep installed programs, settings, and data. I’ve managed this latter feat, and I thought it might be worth documenting my experience in case it helps others.</p>
+  <p>I recently upgraded my Dell XPS 13 9350’s SSD from the stock 128 GB Samsung CM-871 to a 512 GB Intel 600p.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> It’s a somewhat unusual upgrade because the CM-871 is a SATA 3 drive, and the 600p is an NVMe drive. In most machines swapping a SATA drive for an NVMe drive will not work. But it will with the XPS 9350. While the 128 GB version comes with a SATA drive, the models with 256 and 512 GB of storage both come with NVMe drives. So the motherboard supports both SATA and NVMe. Several owners have reported their success upgrading their 128 GB drive to a Samsung 950 Pro<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. However,  in all the reports I’ve found those upgraders did a fresh install of Windows 10, rather than cloning their drive and keeping their installed programs, settings, and data. I’ve managed this latter feat, and I thought it might be worth documenting my experience in case it helps others. Read on, and you’ll learn how.</p>
 
 <p>Before you get started, make sure you have the following on hand:</p>
 
@@ -157,14 +155,14 @@
     </ul>
   </li>
   <li>
-    <p>Boot using your new disk, make sure it works.</p>
+    <p>Boot using your newly installed disk to confirm the restore worked.</p>
   </li>
   <li>Restart the computer and boot into the Ubuntu Live environment. Use gparted to adjust the size of your partitions.
     <ul>
       <li>In order for Ubuntu to be able to find the NVME hard drive, you need to change a UEFI/BIOS setting. You’ll be changing the storage controller from RAID mode to AHCI mode. It’s in the System Configuration-&gt;SATA Operation menu.</li>
-      <li>Assuming you haven’t changed the factory partitions, you’ll have 4 on the old hard drive: a 500 MB boot partition, a 128 MB reserved partition, a ~127.8 GB data and os partition, and a 850 MB recovery parition.</li>
+      <li>Assuming you haven’t changed the factory partitions, you’ll have 4 on the old hard drive: a 500 MB boot partition, a 128 MB reserved partition, a ~127.8 GB data and OS partition, and a 850 MB recovery parition.</li>
       <li>After the clone, you’ll have the same partitions, plus some unallocated space at the end of the disk.</li>
-      <li>I deleted the recovery partition, then expanded the main partition to fill all of the empty space.</li>
+      <li>I deleted the recovery partition, then expanded the main partition to fill all of the empty space. Windows 10s built-in disk partition tool can’t expand an NTFS partition, which is why I used gparted.</li>
     </ul>
   </li>
   <li>Restart the computer and boot into the restored Windows 10 environment
@@ -178,7 +176,7 @@
 
 <ul>
   <li>
-    <p>If you only have one USB thumb drive, you can move creation of the Ubuntu drive to between steps 6 and 7, reusing the drive you used for the Reflect restore environment. The reason I suggest making it at the beginning on a different drive is that if you run into trouble, you can boot into Ubuntu to use the web, create new USB drives, examine the partitions, etc. If you only have the one, and your first attempt fails, you’ll have to swap out the drive physically in between attempts, which is a pain.</p>
+    <p>If you only have one USB thumb drive, you can move creation of the Ubuntu drive to between steps 6 and 7, reusing the drive you used for the Reflect restore environment. The reason I suggest two is for troubleshooting. If your newly installed drive can’t boot you can boot into Ubuntu to use the web, create new USB drives, examine the partitions, etc. If you only have the one, and your first attempt fails, you’ll have to swap out the drive physically in between attempts, which is a pain.</p>
   </li>
   <li>
     <p>For my first attempt at doing the clone, I used gparted and dd within Ubuntu to clone the existing partitions to the backup drive, and then to restore them to the new drive. Windows would not boot after doing this. A Windows rescue disk that I had made prior to starting the backup and restore process was unable to repair the boot problem. I also tried with Acronis True Image 2015, which also failed. So I strongly suggest using Reflect, and not something similar. The switch from SATA to NVME seems to confound a lot of the typical methods of clone and restore.</p>
@@ -188,6 +186,18 @@
   </li>
 </ul>
 
+<h2 id="footnotes">Footnotes</h2>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Intel recently released the <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-600p-series.html">600p</a> line of SSDs. They use the new NVMe interface, and offer an intermediate level of performance between SATA drives and the other NVMe drives on the market (the Samsung 950 Pro, the Toshiba RD400). But whereas the 950 pro will set you back about $315 for a 512 GB model, at the time of writing you can get a 512 GB 600p from <a href="http://www.microcenter.com/product/468436/600p_512GB_M2_Internal_SSD">Microcenter</a> for only $170, which is quite competitive with SATA 3 drive prices. It seemed like a good deal to me, and induced me to upgrade. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>See, for instance reddit posts by <a href="https://www.reddit.com/r/Dell/comments/3zfqmx/samsung_950_pro_speed_on_dell_xps_13_9350/">/u/kentjapan</a>, <a href="https://www.reddit.com/r/Dell/comments/4tyqof/does_the_xps_13_9350_with_128_gb_ssd_support_pcie/">/u/jerkel</a>, and <a href="https://www.reddit.com/r/Dell/comments/4cbsn2/xps_13_9350_nvme_issue_after_bios_update/">/u/soymilk</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 </div>
 
