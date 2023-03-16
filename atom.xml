@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Scott Stephens</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2023-03-16T14:24:06-05:00</updated>
- <id>http://localhost:4000</id>
+ <link href="www.scott.stephens.name/atom.xml" rel="self"/>
+ <link href="www.scott.stephens.name/"/>
+ <updated>2023-03-16T14:36:45-05:00</updated>
+ <id>www.scott.stephens.name</id>
  <author>
    <name>Scott Stephens</name>
    <email>stephens.js@gmail.com</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Dell XPS 13 9350 Replacement Battery: My Experience</title>
-   <link href="http://localhost:4000/2019/02/25/xps-9350-replacement-battery/"/>
+   <link href="www.scott.stephens.name/2019/02/25/xps-9350-replacement-battery/"/>
    <updated>2019-02-25T00:00:00-06:00</updated>
-   <id>http://localhost:4000/2019/02/25/xps-9350-replacement-battery</id>
+   <id>www.scott.stephens.name/2019/02/25/xps-9350-replacement-battery</id>
    <content type="html">&lt;h2 id=&quot;the-short-story&quot;&gt;The short story:&lt;/h2&gt;
 
 &lt;p&gt;If you’re looking to replace a battery in a Dell XPS 9350, consider a refurbished replacement directly from Dell. They’re not available through the website, but if you contact tech support they’ll sell you one for $81 plus tax and your old battery. Or $113.17 plus tax if you want to keep the old battery. My refurb came with 53.793 WHr full charge capacity, which is 93.5% of the design capacity (57.532 WHr) and 96% of the marketing specs (56 WHr) for XPS 9350 batteries.&lt;/p&gt;
@@ -95,9 +95,9 @@
  
  <entry>
    <title>Dell XPS 13 9350 SSD Upgrade: SATA to NVMe</title>
-   <link href="http://localhost:4000/2016/10/23/xps-9350-ssd-upgrade/"/>
+   <link href="www.scott.stephens.name/2016/10/23/xps-9350-ssd-upgrade/"/>
    <updated>2016-10-23T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2016/10/23/xps-9350-ssd-upgrade</id>
+   <id>www.scott.stephens.name/2016/10/23/xps-9350-ssd-upgrade</id>
    <content type="html">&lt;p&gt;I recently upgraded my Dell XPS 13 9350’s SSD from the stock 128 GB Samsung CM-871 to a 512 GB Intel 600p.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; It’s a somewhat unusual upgrade because the CM-871 is a SATA 3 drive, and the 600p is an NVMe drive. In most machines swapping a SATA drive for an NVMe drive will not work. But it will with the XPS 9350. While the 128 GB version comes with a SATA drive, the models with 256 and 512 GB of storage both come with NVMe drives. So the motherboard supports both SATA and NVMe. Several owners have reported their success upgrading their 128 GB drive to a Samsung 950 Pro&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. However,  in all the reports I’ve found those upgraders did a fresh install of Windows 10, rather than cloning their drive and keeping their installed programs, settings, and data. I’ve managed this latter feat, and I thought it might be worth documenting my experience in case it helps others. Read on, and you’ll learn how.&lt;/p&gt;
 
 &lt;p&gt;Before you get started, make sure you have the following on hand:&lt;/p&gt;
@@ -190,9 +190,9 @@
  
  <entry>
    <title>About the Work Timer</title>
-   <link href="http://localhost:4000/2016/08/12/about-the-work-timer/"/>
+   <link href="www.scott.stephens.name/2016/08/12/about-the-work-timer/"/>
    <updated>2016-08-12T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2016/08/12/about-the-work-timer</id>
+   <id>www.scott.stephens.name/2016/08/12/about-the-work-timer</id>
    <content type="html">&lt;p&gt;I made the work timer primarily as an exercise to learn some javascript and CSS, but I thought it might be worth describing how I use it, in case anyone stumbles upon it and is curious.&lt;/p&gt;
 
 &lt;p&gt;I often work with a variation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Pomodoro_Technique&quot;&gt;Pomodoro Timer&lt;/a&gt; productivity system. For the first 25 minutes after starting work, I keep working regardless of how frustrated I feel. After the first 25 minutes, I take a 5-10 minute break whenever I feel even a little frustrated. It helps me perserve long enough when starting work to get into &lt;a href=&quot;https://en.wikipedia.org/wiki/Flow_(psychology)&quot;&gt;flow&lt;/a&gt;, but break often enough that I don’t get excessively fatigued.&lt;/p&gt;
@@ -205,9 +205,9 @@
  
  <entry>
    <title>Hello World!</title>
-   <link href="http://localhost:4000/2016/08/11/hello-world/"/>
+   <link href="www.scott.stephens.name/2016/08/11/hello-world/"/>
    <updated>2016-08-11T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2016/08/11/hello-world</id>
+   <id>www.scott.stephens.name/2016/08/11/hello-world</id>
    <content type="html">&lt;p&gt;I created this site primarily as a learning exercise. I program a lot, but, unlike a lot of other programmers, what I program typically has nothing whatsoever to do with the world wide web. Or even a corporate intra-web. Given the ubiquity of web apps I thought it might be a good idea to be at least minimally familiar with web programming. Enough that when developers talk about web stuff my blank uncomprehending stare doesn’t make them wonder if I really know how to program at all. Backend web stuff is actually pretty similar to the stuff I do every day, so for me this was mostly about the front-end, client-side web. Since for me learning by doing is the only way to go, I needed to make a website.&lt;/p&gt;
 
 &lt;p&gt;I started with using Jekyll to generate a static site, since that seemed like the easiest possible way to get a useful site. After realizing just how easy that was, I realized I needed a more substantial project if I actually wanted to learn anything. I’ve been using Pomodoro timers as a productivity tool recently, and decided that writing my own would make a good project.&lt;/p&gt;

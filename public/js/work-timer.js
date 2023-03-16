@@ -289,9 +289,10 @@ jQuery(function ($) {
 				that.state_manager.getState().handleClockOut();
 			});
 
-      $("#btnTestSound").click(function() {
-        that.playDing();
-      });
+			$("#btnTestSound").click(function() {
+				that.playDing();
+			});
+
 			$('#history').on("click","tr",function() {
 				data_val = $(this).data('id');
 				query_string = "tr.detail_row[data-id='" + data_val + "']";
