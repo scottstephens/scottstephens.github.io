@@ -17,7 +17,7 @@ jQuery(function ($) {
 
 		if (hou > 0)
 			return hou.toLocaleString("US",{minimumIntegerDigits : 2}) + ":" + min.toLocaleString("US",{minimumIntegerDigits : 2}) + "'";
-		else 
+		else
 			return min.toLocaleString("US", {minimumIntegerDigits : 2}) + ":" + sec.toLocaleString("US",{minimumIntegerDigits : 2}) + "''";
 	};
 
@@ -77,14 +77,14 @@ jQuery(function ($) {
 			}
 		}
 	}
-	
+
 	class StateManager {
-		
+
 		constructor(app) {
 			this.app = app;
 			this.state = null;
 		}
-		
+
 		setState(new_state) {
 			if (this.state !== null) {
 				this.state.exit(new_state);
@@ -92,7 +92,7 @@ jQuery(function ($) {
 			new_state.enter(this.state);
 			this.state = new_state;
 		}
-		
+
 		getState() {
 			return this.state;
 		}
@@ -114,23 +114,23 @@ jQuery(function ($) {
 			this.segment_start_timestamp = null;
 			this.segment_history = [];
 		}
-		
+
 		enter(prev_state) {
 			this.overall_start_timestamp = new moment();
 			this.segment_start_timestamp = this.overall_start_timestamp;
 		}
-		
+
 		exit(next_state) {
 			this.overall_stop_timestamp = this.closeSegment();
 			this.manager.app.setFinishedSession(this);
 		}
-		
+
 		closeSegment() {
 			var stop_time = new moment();
 			var segment_data = {
-				name : this.name, 
+				name : this.name,
 				segment_ispause : this.paused,
-				segment_start : this.segment_start_timestamp, 
+				segment_start : this.segment_start_timestamp,
 				segment_stop : stop_time,
 				segment_duration : stop_time.diff(this.segment_start_timestamp)
 			};
@@ -138,11 +138,11 @@ jQuery(function ($) {
 				this.total_pause_time += stop_time.diff(segment_data.segment_start);
 			} else {
 				this.total_active_time += stop_time.diff(segment_data.segment_start);
-			}				
+			}
 			this.segment_history.push(segment_data);
 			return stop_time;
 		}
-		
+
 		getSessionMin() {
 			if (this.name === "work") {
 				return this.manager.app.work_minutes*60*1000;
@@ -150,37 +150,37 @@ jQuery(function ($) {
 				return this.manager.app.break_minutes*60*1000;
 			}
 		}
-		
+
 		handleTimer() {
 			var now = new moment();
 			var current_active_time = this.total_active_time;
-			
+
 			if (!this.paused) {
 				var current_session_time = now.diff(this.segment_start_timestamp);
 				current_active_time += current_session_time;
 			}
-			
+
 			var t_net_time_string = formatDurationShort(current_active_time);
 			$("#clock").text(t_net_time_string);
-			
+
 			if (!this.session_min_reached && current_active_time > this.getSessionMin() ) {
 				this.session_min_reached = true;
 				this.manager.app.playDing();
 			}
 		}
-		
+
 		handleStartWork() {
 			if (name !== 'work') {
 				this.manager.setState(new ActiveState(this.manager,"work"));
 			}
 		}
-		
+
 		handleStartBreak() {
 			if (name !== 'break') {
 				this.manager.setState(new ActiveState(this.manager, "break"));
 			}
 		}
-		
+
 		handlePause() {
 			var stop_time;
 			if (!this.paused) {
@@ -200,22 +200,22 @@ jQuery(function ($) {
 			this.manager.setState(new ClockedOutState(this.manager));
 		}
 	}
-	
+
 	class ClockedOutState
 	{
 		constructor(manager) {
 			this.manager = manager;
 			this.is_active = false;
 		}
-		
+
 		enter(prev_state) {
-			
+
 		}
-		
+
 		exit(next_state) {
-			
+
 		}
-		
+
 		handleTimer() {
 			var co_text = "--:--";
 			var current_text = $("#clock").text();
@@ -223,24 +223,24 @@ jQuery(function ($) {
 				$("#clock").text(co_text);
 			}
 		}
-		
+
 		handleStartWork() {
 			this.manager.setState(new ActiveState(this.manager,"work"));
 		}
-		
+
 		handleStartBreak() {
 			this.manager.setState(new ActiveState(this.manager, "break"));
 		}
-		
+
 		handlePause() {
 		}
 
 		handleClockOut() {
 		}
 	}
-	
 
-	
+
+
 	var App = {
 		work_minutes : 25,
 		break_minutes : 5,
@@ -252,43 +252,46 @@ jQuery(function ($) {
 		summary_work_time : 0,
 		summary_break_time : 0,
 		summary_pause_time : 0,
-		
+
 		init : function() {
-		
+
 			var that = this;
-			
+
 			$("#iptWorkTime").val(this.work_minutes);
 			$("#iptBreakTime").val(this.break_minutes);
-		
+
 			this.state_manager = new StateManager(this);
 			this.state_manager.setState(new ClockedOutState(this.state_manager));
-			
+
 			$("#btnApply").click(function() {
 				that.work_minutes = $("#iptWorkTime").val();
 				that.break_minutes = $("#iptBreakTime").val();
 			});
-			
+
 			$("#btnReset").click(function(){
 				$("#iptWorkTime").val(that.work_minutes);
 				$("#iptBreakTime").val(that.break_minutes);
 			});
-			
+
 			$("#btnStartWork").click(function() {
 				that.state_manager.getState().handleStartWork();
 			});
-			
+
 			$("#btnStartBreak").click(function() {
 				that.state_manager.getState().handleStartBreak();
 			});
-			
+
 			$("#btnPause").click(function(){
 				that.state_manager.getState().handlePause();
 			});
-			
+
 			$("#btnClockOut").click(function(){
 				that.state_manager.getState().handleClockOut();
 			});
 
+      $("#btnTestSound").click(function() {
+        that.playDing();
+      });
 			$('#history').on("click","tr",function() {
 				data_val = $(this).data('id');
 				query_string = "tr.detail_row[data-id='" + data_val + "']";
@@ -299,7 +302,7 @@ jQuery(function ($) {
 		},
 		playDing : function() {
 			$("#dingsound").trigger('play');
-		}, 
+		},
 		setPauseButtonText(input) {
 			$("#btnPause").text(input);
 		},
@@ -332,6 +335,6 @@ jQuery(function ($) {
 			$("#history_body").html(history_content)
 		}
 	};
-	
+
 	App.init();
 });
