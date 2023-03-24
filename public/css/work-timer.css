@@ -96,3 +96,16 @@ table#history td.pause_col, table#history th.pause_col {
 .detail_hidden {
 	display : none;
 }
+
+.history-button-container {
+  position: relative;
+  /* transform: translateY(-50%); */
+}
+
+.history-button {
+  font-size: 60%;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+}
+

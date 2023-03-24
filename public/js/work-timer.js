@@ -293,6 +293,17 @@ jQuery(function ($) {
 				that.playDing();
 			});
 
+      $("#btnCopyHistory").click(function() {
+        content = that.formatSessionHistoryForClipboard(that.session_history);
+        navigator.clipboard.writeText(content)
+          .then(() => {
+            alert("copy succeeded");
+          })
+          .catch(e => {
+            alert(`copy failed: ${e.message}`);
+          });
+      });
+
 			$('#history').on("click","tr",function() {
 				data_val = $(this).data('id');
 				query_string = "tr.detail_row[data-id='" + data_val + "']";
@@ -334,7 +345,32 @@ jQuery(function ($) {
 
 			history_content = Handlebars.templates['work-timer-history']({d : this.session_history})
 			$("#history_body").html(history_content)
-		}
+		},
+    formatSessionHistoryForClipboard: function(session_history) {
+      header_items = ["Date", "SessionIndex","Type","Start","End","Duration"];
+      lines = [header_items.join("\t")];
+      session_index = 0;
+      date = session_history.length > 0 ? session_history[0].overall_start_timestamp : null;
+      for (session of session_history) {
+
+        session_index += 1;
+
+        for (segment of session.segment_history) {
+          line_items = [
+            date.format("YYYY-MM-DD"),
+            `${session_index}`,
+            segment.segment_ispause ? `${segment.name} pause` : segment.name,
+            segment.segment_start.format("YYYY-MM-DD HH:mm:ss"),
+            segment.segment_stop.format("YYYY-MM-DD HH:mm:ss"),
+            formatDurationLong(segment.segment_duration)
+          ];
+          line = line_items.join("\t");
+          lines.push(line);
+        }
+      }
+      content = lines.join("\n");
+      return content;
+    }
 	};
 
 	App.init();
